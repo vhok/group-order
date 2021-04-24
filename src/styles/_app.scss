@@ -1,0 +1,63 @@
+// ================ GLOBAL SETTINGS ================
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    max-width: $max-width;
+    margin: 0 auto;
+}
+
+// ================ LOGIN =================
+.Login {
+    form {
+        display: flex;
+        flex-direction: column;
+
+        max-width: 400px;
+
+        @include border();
+    }
+
+    .Login__div-input {
+        margin: 15px 20px;
+        padding-right: 50px;
+
+        display: flex;
+        justify-content: flex-end;
+
+        input {
+            margin-left: 10px;
+        }
+    }
+}
+
+// ================ SIGNUP =================
+.SignUp {
+    form {
+        display: flex;
+        flex-direction: column;
+
+        max-width: 400px;
+
+        @include border();
+    }
+
+    .SignUp__div-input {
+        margin: 15px 20px;
+        padding-right: 50px;
+        display: flex;
+        justify-content: flex-end;
+
+        input {
+            margin-left: 10px;
+        }
+    }
+}
+
+// ================ MISC =================
+button {
+    width: 200px;
+    margin: 20px auto;
+}
