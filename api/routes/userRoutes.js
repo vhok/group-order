@@ -1,5 +1,6 @@
 const express = require('express');
 const { createUser } = require('./../services/userService');
+const { createToken } = require('./../services/tokenService');
 
 const router = express.Router();
 
@@ -28,10 +29,11 @@ router.route('/signup')
             // create user in DB
             const user = await createUser({ email, password, nameFirst, nameLast })
 
-            // create token
+            // create token and specify payload
+            const token = createToken({ id: user._id })
 
-            // respond to post request
-            res.status(200).json({ body: req.body });
+            // respond to post request by returning a token
+            res.status(200).json({ access_token: token });
 
         } catch(err) {
             console.error(err);
