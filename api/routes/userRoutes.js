@@ -1,5 +1,6 @@
 const express = require('express');
-const { createUser } = require('./../services/userService');
+const { createUser, findUserById } = require('./../services/userService');
+const { verifyToken } = require('./../utils/tokenMiddleware');
 const { createToken } = require('./../services/tokenService');
 
 const router = express.Router();
@@ -42,5 +43,19 @@ router.route('/signup')
 
     });
 
+    router.route('/userinfo')
+        .get(verifyToken, async (req, res) => {
+            try {
+                const { id } = req.user;
+                const user = await findUserById(id)
+                res.json(user);
+            } catch(err) {
+                if(err.message && err.message === 'not found') {
+                    return res.status(404).json({ message: 'user not found' });
+                }
+                return res.status(500).json({ message: 'internal server error' });
+            }
+        });
+        
 // exports the actual router
 module.exports = router;

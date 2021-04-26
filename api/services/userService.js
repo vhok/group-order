@@ -25,3 +25,18 @@ exports.createUser = async ({
         throw err;
     }
 }
+
+exports.findUserById = async (id) => {
+    try {
+        const userDocument = await User.findById(id);
+
+        if (!userDocument) {
+            throw new Error('not found');
+        }
+
+        return userDocument;
+    } catch (err) {
+        console.error(err);
+        throw err;
+    }
+}

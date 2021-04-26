@@ -7,10 +7,41 @@ import User from './components/User';
 import {
   BrowserRouter as Router,
   Route,
-  Link
+  Link,
+  Redirect
 } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 function App() {
+  const [ user, setUser ] = useState(undefined);
+  const [ token, setToken ] = useState(undefined);
+  
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const response = await fetch('/api/users/userinfo', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) {
+          console.error('bad user fetch');
+          setUser(undefined);
+        }
+
+        const userData = await response.json();
+        setUser(userData);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    if (token) {
+      getUser();
+    }
+  }, [token]);
+
   return (
     <Router>
       <div className="App wrapper">
@@ -31,9 +62,16 @@ function App() {
             </li>
           </ul>
 
-          <Route exact path="/" component={Home}/>
+          <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
-          <Route path="/signup" component={SignUp} />
+          
+          <Route path="/signup" render={() => {
+            if (user) {
+              return <Redirect to="/" />;
+            }
+            return <SignUp setToken={setToken} />;
+          }} />
+
           <Route path="/admin" component={Admin} />
           <Route path="/user" component={User} />
         </main>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function SignUp() {
+function SignUp({ setToken }) {
     const [ nameFirst, setNameFirst ] = useState('');
     const [ nameLast, setNameLast ] = useState('');
     const [ email, setEmail ] = useState('');
@@ -8,7 +8,7 @@ function SignUp() {
 
     const postUser = async () => {
         try {
-            const response = await fetch('/api/signup', {
+            const response = await fetch('/api/users/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -20,8 +20,10 @@ function SignUp() {
                 console.error('bad user signup');
             }
             
-            console.log( await response.json() );
+            const data = await response.json();
+            const { access_token } = data;
 
+            setToken(access_token);
         } catch(err) {
             console.error(err);
         }
