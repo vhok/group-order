@@ -1,3 +1,6 @@
+import {
+    Link
+} from 'react-router-dom';
 import { useState } from 'react';
 
 function SignUp({ setToken }) {
@@ -37,6 +40,14 @@ function SignUp({ setToken }) {
     return (
         <div className="SignUp">
             <h2>SignUp</h2>
+            <ul>
+                <li>
+                    <Link to="/">Home</Link>
+                </li>
+                <li>
+                    <Link to="/login">Login</Link>
+                </li>
+            </ul>
             <form onSubmit={submitHandler}>
                 <div className="SignUp__div-input">
                     <label htmlFor="nameFirst">First Name</label>

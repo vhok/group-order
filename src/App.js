@@ -52,16 +52,12 @@ function App() {
         <main>
           <h1>My App</h1>
 
-          <ul>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/signup">Sign Up</Link>
-            </li>
-          </ul>
-
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" render={() => {
+            if (user) {
+              return <Redirect to="/user" />;
+            }
+            return <Home/>;
+          }} />
 
           <Route path="/login" render={() => {
             if (user) {
