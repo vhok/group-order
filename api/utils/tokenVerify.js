@@ -13,18 +13,18 @@ exports.createToken = (payload) => {
 
 
 // asynchronous version - refer to tokenMiddleware.js for adding "await" if you want to use this method.
-// exports.verifyToken = (token) => {
-//     return new Promise((resolve, reject) => {
-//         jwt.verify(token, TOKEN_SECRET_KEY, (err, decoded) => {
-//             if (err) {
-//                 return reject(err);
-//             }
-//             return resolve(decoded);
-//         });
-//     });
-// };
-
-// Experimental - see if simplified version works.
 exports.verifyToken = (token) => {
-    return jwt.verify(token, TOKEN_SECRET_KEY);
+    return new Promise((resolve, reject) => {
+        jwt.verify(token, TOKEN_SECRET_KEY, (err, decoded) => {
+            if (err) {
+                return reject(err);
+            }
+            return resolve(decoded);
+        });
+    });
 };
+
+// Note: Not recommended because it might cause a hold up.
+// exports.verifyToken = (token) => {
+//     return jwt.verify(token, TOKEN_SECRET_KEY);
+// };

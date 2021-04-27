@@ -40,3 +40,25 @@ exports.findUserById = async (id) => {
         throw err;
     }
 }
+
+exports.loginUser = async ({ email, password }) => {
+    try {
+        // If user doesn't exist.
+        const user = await User.findOne({ email });
+        if(!user) {
+            throw new Error('unauthorized');
+        }
+
+        const isValid = await user.comparePasswords(password);
+        // If password doesn't match.
+        if(!isValid) {
+            throw new Error('unauthorized');
+        }
+
+        return user;
+
+    } catch(err) {
+        console.error(err);
+        throw err;
+    }
+}

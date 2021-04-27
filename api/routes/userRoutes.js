@@ -1,7 +1,7 @@
 const express = require('express');
-const { createUser, findUserById } = require('./../services/userService');
+const { createUser, findUserById, loginUser } = require('./../services/userService');
 const { verifyToken } = require('./../utils/tokenMiddleware');
-const { createToken } = require('./../services/tokenService');
+const { createToken } = require('../utils/tokenVerify');
 
 const router = express.Router();
 
@@ -56,6 +56,33 @@ router.route('/signup')
                 return res.status(500).json({ message: 'internal server error' });
             }
         });
-        
+
+
+    router.route('/login')
+        .post( async (req, res) => {
+            try {
+                const { email, password } = req.body;
+
+                if( !email || email === '') {
+                    return res.status(400).json({ message: 'email must be provided' });
+                }
+
+                if ( !password || password === '') {
+                    return res.status(400).json({ message: 'password must be provided' });
+                }
+                
+                const user = await loginUser({ email, password });
+                const token = createToken({ id: user.id });
+                
+                res.json({ access_token: token });
+            } catch(err) {
+                console.error(err);
+                if( err.message && err.message === 'not found') {
+                    return res.status(404).json({ message: 'user not found' });
+                }
+
+                return res.status(500).json({ message: 'internal server error' });
+            }
+        });
 // exports the actual router
 module.exports = router;

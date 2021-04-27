@@ -2,7 +2,6 @@ import './styles/styles.scss';
 import Home from './components/Home';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
-import Admin from './components/Admin';
 import User from './components/User';
 import {
   BrowserRouter as Router,
@@ -63,17 +62,27 @@ function App() {
           </ul>
 
           <Route exact path="/" component={Home} />
-          <Route path="/login" component={Login} />
+
+          <Route path="/login" render={() => {
+            if (user) {
+              return <Redirect to="/user" />;
+            }
+            return <Login setToken={setToken} />;
+          }} />
           
           <Route path="/signup" render={() => {
             if (user) {
-              return <Redirect to="/" />;
+              return <Redirect to="/user" />;
             }
             return <SignUp setToken={setToken} />;
           }} />
 
-          <Route path="/admin" component={Admin} />
-          <Route path="/user" component={User} />
+          <Route path="/user" render={() => {
+            if (user) {
+              return <User />;
+            }
+            return <Redirect to="/" />;
+          }} />
         </main>
 
         {/* ================ FOOTER ================ */}

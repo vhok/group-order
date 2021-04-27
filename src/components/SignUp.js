@@ -6,7 +6,7 @@ function SignUp({ setToken }) {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
 
-    const postUser = async () => {
+    const createUser = async () => {
         try {
             const response = await fetch('/api/users/signup', {
                 method: 'POST',
@@ -31,7 +31,7 @@ function SignUp({ setToken }) {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        postUser();
+        createUser();
     };
 
     return (

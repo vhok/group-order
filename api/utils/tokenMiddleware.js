@@ -1,4 +1,4 @@
-const { verifyToken } = require('./../services/tokenService');
+const { verifyToken } = require('./tokenVerify');
 
 exports.verifyToken = async (req, res, next) => {
     try {
@@ -19,7 +19,7 @@ exports.verifyToken = async (req, res, next) => {
         }
 
         // NOTE: technically, this is the "payload" of the token, not the user.
-        const user = verifyToken(token);
+        const user = await verifyToken(token);
         req.user = user;
         next();
     } catch (err) {
