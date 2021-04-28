@@ -3,7 +3,10 @@ const jwt = require('jsonwebtoken');
 // ENVIRONMENT VARIABLES DEV-ONLY
 const dotenv = require('dotenv');
 dotenv.config();
-const TOKEN_SECRET_KEY = process.env.TOKEN_SECRET_KEY;
+
+const config = require('./../config/config');
+
+const TOKEN_SECRET_KEY = config.TOKEN_SECRET_KEY;
 
 
 exports.createToken = (payload) => {
