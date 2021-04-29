@@ -1,23 +1,14 @@
-$max-width: 1080px;
+$max-width: 1280px;
+
+$secondary-color: rgb(26, 43, 43);
+$secondary-color-transparent: rgba(26, 43, 43, 0.75);
 
 // debugging tool for CSS
 @mixin border() {
     border: 1px solid red;
 }
 
-@mixin authForm() {
-    display: flex;
-    flex-direction: column;
-    max-width: 510px;
-    background-color: rgba(26, 43, 43, 0.75);
-    padding-bottom: 35px;
-
+@mixin panel() {
+    background-color: $secondary-color-transparent;
     border: 1px solid white;
-}
-
-@mixin authField() {
-    margin: 15px 20px;
-    padding-right: 10px;
-    display: flex;
-    justify-content: flex-end;
 }

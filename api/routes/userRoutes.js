@@ -72,7 +72,7 @@ router.route('/signup')
                 }
                 
                 const user = await loginUser({ email, password });
-                const token = createToken({ id: user.id });
+                const token = createToken({ id: user._id });
                 
                 res.json({ access_token: token });
             } catch(err) {

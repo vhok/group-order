@@ -21,7 +21,7 @@ body {
     flex-direction: column;
 }
 
-.App, main, .SignUp, .Login {
+.App, main {
     height: 100%;
 }
 
@@ -32,6 +32,8 @@ main {
     align-items: center;
 }
 
+// ================ LOGIN & SIGN UP =================
+
 .Login, .SignUp {
     height: 100%;
     display: flex;
@@ -39,10 +41,17 @@ main {
     text-align: center;
 
     form {
-        @include authForm();
+        @include panel();
+        display: flex;
+        flex-direction: column;
+        max-width: 510px;
+        padding-bottom: 35px;
 
         .Login__div-input, .SignUp__div-input {
-            @include authField();
+            margin: 15px 20px;
+            padding-right: 10px;
+            display: flex;
+            justify-content: flex-end;
         }
 
         input {
@@ -61,27 +70,66 @@ main {
             border: 1px solid white;
             border-radius: 7px;
             color: white;
-            background-color: rgb(26, 43, 43);
+            background-color: $secondary-color-transparent;
+
+            &:hover, &:focus {
+                border: 1px solid $secondary-color;
+                color: $secondary-color;
+                background-color: white;
+            }
         }
 
-        button:hover, button:focus {
-            border: 1px solid rgb(26, 43, 43);
-            color: rgb(26, 43, 43);
-            background-color: white;
-        }
     }
     
 }
 
-// ================ LOGIN =================
-// .Login {
+// ================ USER =================
+.User {
+    @include panel();
+    height: 900px;
+    width: 900px;
+    text-align: center;
 
-// }
+    display: flex;
+    flex-direction: column;
 
-// ================ SIGNUP =================
-// .SignUp {
+    .User__div-dashboard {
+        flex-grow: 1;
+        display: flex;
+        border-top: 1px solid white;
 
-// }
+        .User__div-nav {
+            flex-grow: 2;
+            border-right: 1px solid white;
+
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+
+                button {
+                    border: none;
+                    transition: 0.25s;
+                    width: 100%;
+                    background: transparent;
+                    color: white;
+
+
+
+
+                    &:hover, &:focus {
+                        color: $secondary-color;
+                        background: white;
+                    }
+                }
+            }
+        }
+
+        .User__div-viewport {
+            flex-grow: 12;
+        }
+    }
+}
 
 // ================ MISC =================
 a {

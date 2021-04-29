@@ -40,9 +40,9 @@ userSchema.pre('save', async function(next) {
 });
 
 // Custom method for schema - compare password with encrypted database password
-userSchema.methods.comparePasswords = function(password) {
+userSchema.methods.comparePasswords = async function(password) {
     const user = this;
-    return bcrypt.compare(password, user.password);
+    return await bcrypt.compare(password, user.password);
 }
 
 // Exports the model

@@ -5,7 +5,7 @@ import User from './components/User';
 import {
   BrowserRouter as Router,
   Route,
-  Link,
+  // Link,
   Redirect
 } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -52,7 +52,7 @@ function App() {
         <main>
 
           <Route exact path="/" render={() => {
-            return <Login setToken={setToken} />;
+            return <Redirect to="/login" />;
           }} />
 
           <Route path="/login" render={() => {
