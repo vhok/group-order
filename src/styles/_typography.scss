@@ -1,19 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Orelega+One&display=swap');
 
 body {
-    font-family: 'Orelega One', cursive;
     color: white;
 }
 
-input {
+body, input, button {
     font-family: 'Orelega One', cursive;
 }
 
-input, label {
+input, label, button {
     font-size: 1.6rem;
 }
 
 h1 {
+    margin: 0;
     font-size: 2.5rem;
 }
 

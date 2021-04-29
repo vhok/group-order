@@ -37,13 +37,8 @@ function Login({ setToken }) {
 
     return (
         <div className="Login">
-            <h2>Login</h2>
-            <ul>
-                <li>
-                    <Link to="/signup">Sign Up</Link>
-                </li>
-            </ul>
             <form onSubmit={submitHandler}>
+                <h2>Login</h2>
                 <div className="Login__div-input">
                     <label htmlFor="email">Email: </label>
                     <input id="email" type="email" onChange={(e) => { setEmail(e.target.value) }} value={email} required/>
@@ -54,6 +49,8 @@ function Login({ setToken }) {
                     <input id="password" type="password" onChange={(e) => { setPassword(e.target.value) }} value={password} required/>
                 </div>
                 <button type="submit">Submit</button>
+                <span className="Login__span-signup">New to the lunch group? <Link to="/signup">Sign up</Link> for a new account.</span>
+
             </form>
         </div>
     );

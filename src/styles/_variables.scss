@@ -8,12 +8,11 @@ $max-width: 1080px;
 @mixin authForm() {
     display: flex;
     flex-direction: column;
-    max-width: 500px;
-    background-color: rgb(56, 92, 92);
+    max-width: 510px;
+    background-color: rgba(26, 43, 43, 0.75);
+    padding-bottom: 35px;
 
-    button {
-        height: 1.6rem;
-    }
+    border: 1px solid white;
 }
 
 @mixin authField() {

@@ -45,11 +45,11 @@ function App() {
       <div className="App wrapper">
         {/* ================ HEADER ================ */}
         <header>
+          <h1>Group Order</h1>
         </header>
 
         {/* ================ MAIN ================ */}
         <main>
-          <h1>Group Order</h1>
 
           <Route exact path="/" render={() => {
             return <Login setToken={setToken} />;

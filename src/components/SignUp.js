@@ -39,13 +39,8 @@ function SignUp({ setToken }) {
 
     return (
         <div className="SignUp">
-            <h2>SignUp</h2>
-            <ul>
-                <li>
-                    <Link to="/login">Login</Link>
-                </li>
-            </ul>
             <form onSubmit={submitHandler}>
+                <h2>Sign Up</h2>
                 <div className="SignUp__div-input">
                     <label htmlFor="nameFirst">First Name</label>
                     <input type="text" id="nameFirst" onChange={ (e) => { setNameFirst(e.target.value) } } value={nameFirst} required />
@@ -67,6 +62,7 @@ function SignUp({ setToken }) {
                 </div>
 
                 <button type="submit">Submit</button>
+                <span className="SignUp__span-signup">Already a user? Log in <Link to="/login">here</Link>.</span>
             </form>
         </div>
     );
