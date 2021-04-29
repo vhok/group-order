@@ -40,9 +40,6 @@ function Login({ setToken }) {
             <h2>Login</h2>
             <ul>
                 <li>
-                    <Link to="/">Home</Link>
-                </li>
-                <li>
                     <Link to="/signup">Sign Up</Link>
                 </li>
             </ul>

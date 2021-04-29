@@ -2,6 +2,11 @@
 body {
     margin: 0;
     padding: 0;
+    font-size: 62.5%;
+
+    background: url('./../assets/restaurant.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .wrapper {
@@ -9,50 +14,37 @@ body {
     margin: 0 auto;
 }
 
+.App {
+    max-height: 100vh;
+}
+
 // ================ LOGIN =================
 .Login {
     form {
-        display: flex;
-        flex-direction: column;
-
-        max-width: 400px;
-
-        @include border();
+        @include authForm();
     }
 
     .Login__div-input {
-        margin: 15px 20px;
-        padding-right: 50px;
+        @include authField();
+    }
 
-        display: flex;
-        justify-content: flex-end;
-
-        input {
-            margin-left: 10px;
-        }
+    input {
+        margin-left: 10px;
     }
 }
 
 // ================ SIGNUP =================
 .SignUp {
     form {
-        display: flex;
-        flex-direction: column;
-
-        max-width: 400px;
-
-        @include border();
+        @include authForm();
     }
 
     .SignUp__div-input {
-        margin: 15px 20px;
-        padding-right: 50px;
-        display: flex;
-        justify-content: flex-end;
+        @include authField();
+    }
 
-        input {
-            margin-left: 10px;
-        }
+    input {
+        margin-left: 10px;
     }
 }
 

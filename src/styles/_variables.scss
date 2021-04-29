@@ -1,5 +1,24 @@
 $max-width: 1080px;
 
+// debugging tool for CSS
 @mixin border() {
-    border: 1px solid black;
+    border: 1px solid red;
+}
+
+@mixin authForm() {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    background-color: rgb(56, 92, 92);
+
+    button {
+        height: 1.6rem;
+    }
+}
+
+@mixin authField() {
+    margin: 15px 20px;
+    padding-right: 10px;
+    display: flex;
+    justify-content: flex-end;
 }

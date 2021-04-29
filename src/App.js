@@ -1,5 +1,4 @@
 import './styles/styles.scss';
-import Home from './components/Home';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import User from './components/User';
@@ -50,13 +49,10 @@ function App() {
 
         {/* ================ MAIN ================ */}
         <main>
-          <h1>My App</h1>
+          <h1>Group Order</h1>
 
           <Route exact path="/" render={() => {
-            if (user) {
-              return <Redirect to="/user" />;
-            }
-            return <Home/>;
+            return <Login setToken={setToken} />;
           }} />
 
           <Route path="/login" render={() => {
