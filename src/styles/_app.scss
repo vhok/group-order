@@ -54,6 +54,9 @@ main {
         }
 
         button {
+            width: 200px;
+            margin: 20px auto;
+            padding: 5px 10px;
             border-style: none;
             border: 1px solid white;
             border-radius: 7px;
@@ -81,7 +84,10 @@ main {
 // }
 
 // ================ MISC =================
-button {
-    width: 200px;
-    margin: 20px auto;
+a {
+    color: blue;
+}
+
+a:visited {
+    color: red;
 }
