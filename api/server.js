@@ -36,10 +36,6 @@ const port = config.PORT;
 // Note: Mounts the route handler onto the endpoint.
 app.use('/api', userRouter);
 
-
-
-
-
 mongoose
     .connect(
         uri,
@@ -57,8 +53,63 @@ mongoose
         await OrderModel.deleteMany();
         await GroupOrderModel.deleteMany();
 
+        const buzzBuzzItemOne = new ItemModel({
+            name: 'Chicken Souvlaki Combo',
+            description: 'Chicken souvlaki with pita and greek salad.',
+            price: 7.99,
+        });
 
+        const buzzBuzzItemTwo = new ItemModel({
+            name: 'Chicken on a Bun',
+            description: 'Chicken souvlaki with a bun and greek salad.',
+            price: 7.99,
+        });
 
+        const costaItemOne = new ItemModel({
+            name: 'Half Chicken with Rice',
+            description: 'Seasoned half chicken with rice.',
+            price: 9.99,
+        });
+
+        const costaItemTwo = new ItemModel({
+            name: 'Half Chicken with Potatoes',
+            description: 'Seasoned half chicken with potatoes.',
+            price: 9.99,
+        });
+        
+        const restaurantOne = new RestaurantModel({
+            name: 'Buzz Buzz Pizza',
+            items: [buzzBuzzItemOne, buzzBuzzItemTwo],
+            address: {
+                streetNumber: 822,
+                streetName: 'Wilson Ave.',
+                city: 'North York',
+                province: 'Ontario',
+                postalCode: 'M3K 1E5',
+            },
+            phoneNumber: 4166307777,
+        });
+
+        const restaurantTwo = new RestaurantModel({
+            name: 'Costa Verde B.B.Q. & Portuguese Grill',
+            items: [costaItemOne, costaItemTwo],
+            address: {
+                streetNumber: 2764,
+                streetName: 'Keele St.',
+                city: 'North York',
+                province: 'Ontario',
+                postalCode: 'M6M 2G2',
+            },
+            phoneNumber: 4166365517,
+        });
+
+        const groupOrderOne = new GroupOrderModel({
+            restaurant: restaurantOne._id,
+        });
+        
+        await restaurantOne.save();
+        await restaurantTwo.save();
+        await groupOrderOne.save();
 
         // =======================================================================
         app.listen( port, () => {

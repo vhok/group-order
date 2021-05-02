@@ -9,7 +9,10 @@ const itemSchema = new Schema({
         default: 1,
     },
     price: Number,
-    note: String,
+    note: {
+        type: String,
+        default: '',
+    },
 });
 
 // Note: If you require a module with exports specified in this way, it won't produce the exports object, rather the "main" export (ie mongoose.model() ).

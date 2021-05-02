@@ -8,7 +8,10 @@ const groupOrderSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Restaurant',
     },
-    orders: [orderSchema],
+    orders: {
+        type: [orderSchema],
+        default: [],
+    },
 });
 
 module.exports = mongoose.model('GroupOrder', groupOrderSchema);
