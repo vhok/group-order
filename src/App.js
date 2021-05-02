@@ -71,7 +71,7 @@ function App() {
 
           <Route path="/user" render={() => {
             if (user) {
-              return <User />;
+              return <User token={token}/>;
             }
             return <Redirect to="/" />;
           }} />

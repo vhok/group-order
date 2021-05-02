@@ -21,6 +21,10 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
+    role: {
+        type: String,
+        default: 'member',
+    },
 });
 
 // Middleware for password encryption prior to database storage

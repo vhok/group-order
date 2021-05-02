@@ -1,18 +1,25 @@
-function User() {
+import { Route, Link, useRouteMatch } from 'react-router-dom';
+import Order from './User/Order';
+import Settings from './User/Settings';
+
+function User({ token }) {
+    const { path, url } = useRouteMatch();
+    console.log(path, url);
     return (
         <div className="User">
-            <h2>Order Dashboard</h2>
+            <h2>Dashboard</h2>
             <div className="User__div-dashboard">
                 <div className="User__div-nav">
                     <nav>
                         <ul>
-                            <li><button id="order">Order</button></li>
-                            <li><button id="settings">Settings</button></li>
+                            <li><Link to={`${url}/order`}>Order</Link></li>
+                            <li><Link to={`${url}/settings`}>Settings</Link></li>
                         </ul>
                     </nav>
                 </div>
                 <div className="User__div-viewport">
-
+                    <Route path={`${path}/order`} component={Order}/>
+                    <Route path={`${path}/settings`} component={Settings} />
                 </div>
             </div>
         </div>
