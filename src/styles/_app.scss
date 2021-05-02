@@ -131,10 +131,10 @@ main {
 
 // ================ MISC =================
 a {
-    color: blue;
+    color: lightblue;
     text-decoration: none;
-}
 
-a:visited {
-    color: red;
+    &:visited {
+        color: lightblue;
+    }
 }

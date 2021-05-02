@@ -3,13 +3,14 @@ dotenv.config();
 const path = require('path'); // DEPLOY
 const express = require('express');
 const mongoose = require('mongoose');
+const UserModel = require('./models/userModel');
+const ItemModel = require('./models/itemModel');
+const RestaurantModel = require('./models/restaurantModel');
+const OrderModel = require('./models/orderModel');
+const GroupOrderModel = require('./models/groupOrder');
 
 const config = require('./config/config');
 const userRouter = require('./routes/userRoutes');
-
-
-
-
 
 const app = express();
 app.use(express.json());
@@ -32,8 +33,12 @@ const uri = config.DATABASE_URL;
 const port = config.PORT;
 
 // ================ ROUTES ================
-// Note: Mounts the router onto the endpoint.
+// Note: Mounts the route handler onto the endpoint.
 app.use('/api', userRouter);
+
+
+
+
 
 mongoose
     .connect(
@@ -43,7 +48,19 @@ mongoose
             useUnifiedTopology: true, // avoid deprecation warning - Use new server discover and monitoring engine
         },
     )
-    .then( () => {
+    .then( async () => {
+        console.log(ItemModel);
+        // ================ DUMMY DATA (DELETE DURING PRODUCTION) ================
+        // await UserModel.deleteMany();
+        await ItemModel.deleteMany();
+        await RestaurantModel.deleteMany();
+        await OrderModel.deleteMany();
+        await GroupOrderModel.deleteMany();
+
+
+
+
+        // =======================================================================
         app.listen( port, () => {
             console.log('Successfully connected.');
         });

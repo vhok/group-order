@@ -17,4 +17,6 @@ const orderSchema = new Schema({
     },
 });
 
+// Note: If you require a module with exports specified in this way, it won't produce the exports object, rather the "main" export (ie mongoose.model() ).
 module.exports = mongoose.model('Order', orderSchema);
+module.exports.orderSchema = orderSchema;
