@@ -11,6 +11,7 @@ const GroupOrderModel = require('./models/groupOrder');
 
 const config = require('./config/config');
 const userRouter = require('./routes/userRoutes');
+const orderRouter = require('./routes/orderRoutes');
 
 const app = express();
 app.use(express.json());
@@ -18,23 +19,18 @@ app.use(express.json());
 app.use('/', express.static(path.join(__dirname, '../build'))); // DEPLOY -> Serves the files inside ../build
 
 app.use('/api/users', userRouter);
+app.use('/api/orders', orderRouter);
 
 // Use this only if you're using React Router
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../build/index.html')) // DPEPLY -> This is the catch all we need for navigation other than root.
 })
 
-
-
 // const uri = 'mongodb://localhost:27017/group-order-app';
 const uri = config.DATABASE_URL;
 
 // const port = '4000';
 const port = config.PORT;
-
-// ================ ROUTES ================
-// Note: Mounts the route handler onto the endpoint.
-app.use('/api', userRouter);
 
 mongoose
     .connect(
@@ -45,7 +41,6 @@ mongoose
         },
     )
     .then( async () => {
-        console.log(ItemModel);
         // ================ DUMMY DATA (DELETE DURING PRODUCTION) ================
         // await UserModel.deleteMany();
         await ItemModel.deleteMany();
@@ -107,9 +102,17 @@ mongoose
             restaurant: restaurantOne._id,
         });
         
+        const orderOne = new OrderModel({
+            user: mongoose.Types.ObjectId('608e4c08ef2a5e71402c7f04'),
+            items: [buzzBuzzItemOne],
+            cost: 9.99,
+            paid: 0,
+        });
+
         await restaurantOne.save();
         await restaurantTwo.save();
         await groupOrderOne.save();
+        await orderOne.save();
 
         // =======================================================================
         app.listen( port, () => {

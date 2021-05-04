@@ -4,7 +4,7 @@ import Settings from './User/Settings';
 
 function User({ token }) {
     const { path, url } = useRouteMatch();
-    console.log(path, url);
+
     return (
         <div className="User">
             <h2>Dashboard</h2>
@@ -18,7 +18,9 @@ function User({ token }) {
                     </nav>
                 </div>
                 <div className="User__div-viewport">
-                    <Route path={`${path}/order`} component={Order}/>
+                    <Route path={`${path}/order`} render={ () => {
+                        return <Order token={token} />
+                    }}/>
                     <Route path={`${path}/settings`} component={Settings} />
                 </div>
             </div>
