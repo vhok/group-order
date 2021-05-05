@@ -1,17 +1,18 @@
 const express = require('express');
 const { verifyToken } = require('./../utils/tokenMiddleware');
+const { getOrdersByUserId } = require('./../services/orderService');
 
 const router = express.Router();
 
 router.use(verifyToken);
 
 router.route('/orderinfo')
-    .get( (req, res) => {
+    .get( async (req, res) => {
         try {
-            console.log('test');
+            const { id } = req.user;
+            const order = await getOrdersByUserId(id);
 
-            res.json({message: 'empty object'});
-
+            res.json(order);
         } catch(err) {
             console.error(err);
         }
