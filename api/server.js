@@ -58,6 +58,7 @@ mongoose
             name: 'Chicken on a Bun',
             description: 'Chicken souvlaki with a bun and greek salad.',
             price: 7.99,
+            quantity: 2,
         });
 
         const costaItemOne = new ItemModel({
@@ -104,7 +105,7 @@ mongoose
         
         const orderOne = new OrderModel({
             user: mongoose.Types.ObjectId('608e4c08ef2a5e71402c7f04'),
-            items: [buzzBuzzItemOne],
+            items: [buzzBuzzItemOne, buzzBuzzItemTwo],
             cost: 9.99,
             paid: 0,
         });

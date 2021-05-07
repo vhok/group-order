@@ -99,7 +99,7 @@ main {
         border-top: 1px solid white;
 
         .User__div-nav {
-            width: 200px;
+            min-width: 200px;
             border-right: 1px solid white;
 
             ul {
@@ -126,6 +126,23 @@ main {
         .User__div-viewport {
             flex-grow: 1;
         }
+    }
+}
+
+// ================ ORDER =================
+.Order {
+    .Order__div-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .Order__div-card {
+        text-align: left;
+        border: 1px solid white;
+        margin: 5px;
+        padding: 10px;
+        width: calc(50% - 10px);
+
     }
 }
 

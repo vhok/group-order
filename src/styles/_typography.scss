@@ -12,17 +12,33 @@ input, label, button {
     font-size: 1.6rem;
 }
 
-h1 {
+h1, h2, h3, h4, p {
     margin: 0;
+}
+h1 {
     padding: 20px 0;
     font-size: 2.5rem;
 }
 
 h2 {
-    margin: 0;
     font-size: 1.8rem;
 }
 
+h3 {
+    font-size: 1.4rem;
+}
+
+h4 {
+    font-size: 1.2rem;
+}
+
+p {
+    font-size: 1.2rem;
+}
 .User__div-nav a {
     font-size: 1.6rem;
+}
+
+.Login h2 {
+    margin: 10px;
 }

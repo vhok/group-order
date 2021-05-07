@@ -30,9 +30,28 @@ function Order({ token }) {
     }, []);
 
 
+    const displayOrder = (order) => {
+        return (
+            <div className="Order__div-container">
+                {order.items.map( (item) => {
+                    return (
+                    <div className="Order__div-card">
+                        <h4>{item.name}</h4>
+                        <p>Description: {item.description}</p>
+                        <p>Quantity: {item.quantity}</p>
+                        <p>Cost: {item.quantity*item.price}</p>
+                        <p>Notes: {item.note}</p>
+                    </div>
+                    );
+                })}
+            </div>
+        );
+    }
+
     return (
         <div className="Order">
             <h2>Order</h2>
+            { order ? displayOrder(order[0]) : null }
         </div>
     );
 }
