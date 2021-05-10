@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
+import OrderCreation from './Order/OrderCreation';
 
 function Order({ token }) {
     const [order, setOrder] = useState(undefined);
     
-    const getOrders = async () => {
+    const getOrder = async () => {
         try {
             const response = await fetch(`${window.location.origin}/api/orders/orderinfo`, {
                 headers: {
@@ -26,7 +27,7 @@ function Order({ token }) {
     };
     
     useEffect( () => {
-        getOrders();
+        getOrder();
     }, []);
 
 
@@ -35,7 +36,7 @@ function Order({ token }) {
             <div className="Order__div-container">
                 {order.items.map( (item) => {
                     return (
-                    <div className="Order__div-card">
+                    <div className="Order__div-card" key={item._id}>
                         <h4>{item.name}</h4>
                         <p>Description: {item.description}</p>
                         <p>Quantity: {item.quantity}</p>
@@ -51,7 +52,8 @@ function Order({ token }) {
     return (
         <div className="Order">
             <h2>Order</h2>
-            { order ? displayOrder(order[0]) : null }
+            { order ? displayOrder(order) : null }
+            <OrderCreation />
         </div>
     );
 }

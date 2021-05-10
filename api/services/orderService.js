@@ -1,5 +1,6 @@
 const Orders = require('./../models/orderModel');
 
+// An array of orders belonging to userID
 exports.getOrdersByUserId = async (userID) => {
     try {
         const orders = await Orders
@@ -19,7 +20,6 @@ exports.getOrdersByUserId = async (userID) => {
                 items,
                 dateCreated,
             };
-            
             return updatedOrder;
         });
     } catch (err) {
@@ -27,6 +27,23 @@ exports.getOrdersByUserId = async (userID) => {
     }
 };
 
+// The latest order belonging to userID
+exports.getOrderByUserId = async (userID) => {
+    try {
+        const orders = await Orders
+            .find({ user: userID }) // always returns an array
+            .sort({ dateCreated: 1 }); // orders in ascending order by date
+            
+        const order = await orders[orders.length-1].populate({ path: 'user', select: 'nameFirst nameLast' }).execPopulate();; // grabs the last order (ie the most recent)
+            
+        return order;
+
+    } catch(err) {
+        throw error;
+    }
+};
+
+// Get order by the Order's ID
 exports.getOrderById = async (id) => {
     try {
         const order = await Orders

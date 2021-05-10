@@ -110,10 +110,18 @@ mongoose
             paid: 0,
         });
 
+        const orderTwo = new OrderModel({
+            user: mongoose.Types.ObjectId('608e4c08ef2a5e71402c7f05'),
+            items: [costaItemOne],
+            cost: 9.99,
+            paid: 0,
+        });
+
         await restaurantOne.save();
         await restaurantTwo.save();
         await groupOrderOne.save();
         await orderOne.save();
+        await orderTwo.save();
 
         // =======================================================================
         app.listen( port, () => {
